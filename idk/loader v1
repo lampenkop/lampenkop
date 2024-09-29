@@ -1,0 +1,159 @@
+-- Maak de GUI
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "NoFogLoader"
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+screenGui.ResetOnSpawn = false -- Blijft na respawn
+
+-- Maak het hoofdframe
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0, 400, 0, 500) -- 400x500 frame voor extra knoppen
+mainFrame.Position = UDim2.new(0.5, -200, 0.5, -250) -- Midden van het scherm
+mainFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35) -- Donkerder grijs
+mainFrame.BorderSizePixel = 0
+mainFrame.Parent = screenGui
+mainFrame.Active = true
+mainFrame.Draggable = true -- Maak het sleepbaar
+mainFrame.ClipsDescendants = true
+
+-- Afgeronde hoeken
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 12) -- Afgeronde hoeken
+corner.Parent = mainFrame
+
+-- Titel van de GUI
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Size = UDim2.new(1, 0, 0.15, 0) -- Titel bovenin
+titleLabel.Text = "Script Loader"
+titleLabel.TextScaled = true
+titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255) -- Witte tekst
+titleLabel.BackgroundTransparency = 1 -- Transparante achtergrond
+titleLabel.Font = Enum.Font.GothamBold -- Modernere font
+titleLabel.Parent = mainFrame
+
+-- Functie om knoppen te maken (hergebruik voor consistentie)
+local function createButton(text, position, callback)
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(0.8, 0, 0.15, 0) -- 80% breed, 15% hoog
+    button.Position = position
+    button.Text = text
+    button.TextScaled = true
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.Font = Enum.Font.Gotham -- Modern font
+    button.BackgroundColor3 = Color3.fromRGB(85, 170, 255) -- Blauwere tint
+    button.BorderSizePixel = 0
+
+    -- Afgeronde hoeken
+    local btnCorner = Instance.new("UICorner")
+    btnCorner.CornerRadius = UDim.new(0, 8)
+    btnCorner.Parent = button
+
+    button.Parent = mainFrame
+
+    -- Connect de callback functie aan de knop
+    button.MouseButton1Click:Connect(callback)
+
+    return button
+end
+
+-- Maak de knoppen
+local loadNoFogButton = createButton("Load No Fog", UDim2.new(0.1, 0, 0.05, 0), function()
+    local Lighting = game:GetService("Lighting")
+    local skyInstance = Lighting:FindFirstChildOfClass("Sky")
+    if skyInstance then
+        skyInstance:Destroy() -- Verwijder de Sky voor de 'No Fog' functie
+    end
+    print("No Fog geladen.") -- Bevestigingsbericht in de console
+end)
+
+local loadItemESPButton = createButton("Load Item ESP", UDim2.new(0.1, 0, 0.25, 0), function()
+    -- Laad het item ESP script
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/lampenkop/lampenkop/refs/heads/main/boema.lua"))()
+    print("Item ESP geladen.") -- Bevestigingsbericht in de console
+end)
+
+local loadLootbagESPButton = createButton("Load Lootbag ESP", UDim2.new(0.1, 0, 0.45, 0), function()
+    -- Laad het lootbag ESP script
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/lampenkop/lampenkop/refs/heads/main/idk/lootbagESP.lua"))()
+    print("Lootbag ESP geladen.") -- Bevestigingsbericht in de console
+end)
+
+local loadAimbotESPButton = createButton("Load AIMBOT/ESP", UDim2.new(0.1, 0, 0.65, 0), function()
+    -- Laad het aimbot ESP script
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/lampenkop/lampenkop/refs/heads/main/idk/aimbot.lua"))()
+    print("AIMBOT/ESP geladen.") -- Bevestigingsbericht in de console
+end)
+
+local loadInvViewerButton = createButton("Load INV Viewer", UDim2.new(0.1, 0, 0.85, 0), function()
+    -- Laad de inventory viewer script
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/135dafb0c84b7bfb126256e1e47fa782.lua"))()
+    print("INV Viewer geladen.") -- Bevestigingsbericht in de console
+end)
+
+local loadCarFlyButton = createButton("Load Car Fly", UDim2.new(0.1, 0, 1.05, 0), function()
+    -- Laad het car fly script
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/lampenkop/lampenkop/refs/heads/main/idk/carfly.lua"))()
+    print("Car Fly geladen.") -- Bevestigingsbericht in de console
+end)
+
+-- Maak de minimize knop
+local minimizeButton = Instance.new("TextButton")
+minimizeButton.Size = UDim2.new(0, 50, 0, 50)
+minimizeButton.Position = UDim2.new(1, -120, 0, 10)
+minimizeButton.Text = "-"
+minimizeButton.TextScaled = true
+minimizeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+minimizeButton.Font = Enum.Font.GothamBold
+minimizeButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50) -- Neutrale kleur
+minimizeButton.BorderSizePixel = 0
+minimizeButton.Parent = mainFrame
+
+-- Maak de sluitknop
+local closeButton = Instance.new("TextButton")
+closeButton.Size = UDim2.new(0, 50, 0, 50)
+closeButton.Position = UDim2.new(1, -60, 0, 10)
+closeButton.Text = "X"
+closeButton.TextScaled = true
+closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeButton.Font = Enum.Font.GothamBold
+closeButton.BackgroundColor3 = Color3.fromRGB(255, 80, 80) -- Heldere rode kleur
+closeButton.BorderSizePixel = 0
+closeButton.Parent = mainFrame
+
+-- Frame voor geminimaliseerde versie
+local minimizedFrame = Instance.new("Frame")
+minimizedFrame.Size = UDim2.new(0, 100, 0, 50)
+minimizedFrame.Position = mainFrame.Position -- Zelfde positie als mainFrame
+minimizedFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+minimizedFrame.Visible = false -- Begin onzichtbaar
+minimizedFrame.Parent = screenGui
+minimizedFrame.Active = true
+minimizedFrame.Draggable = true -- Sleepbaar
+
+-- Knop om de GUI weer uit te klappen
+local expandButton = Instance.new("TextButton")
+expandButton.Size = UDim2.new(1, 0, 1, 0)
+expandButton.Position = UDim2.new(0, 0, 0, 0)
+expandButton.Text = "+"
+expandButton.TextScaled = true
+expandButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+expandButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+expandButton.BorderSizePixel = 0
+expandButton.Parent = minimizedFrame
+
+-- Minimize functie
+minimizeButton.MouseButton1Click:Connect(function()
+    mainFrame.Visible = false -- Verberg het hoofdframe
+    minimizedFrame.Position = mainFrame.Position -- Zet de geminimaliseerde frame op dezelfde plek
+    minimizedFrame.Visible = true -- Toon de geminimaliseerde versie
+end)
+
+-- Expand functie
+expandButton.MouseButton1Click:Connect(function()
+    minimizedFrame.Visible = false -- Verberg het geminimaliseerde frame
+    mainFrame.Visible = true -- Toon het hoofdframe weer
+end)
+
+-- Sluit functie
+closeButton.MouseButton1Click:Connect(function()
+    screenGui:Destroy() -- Verwijder de hele GUI
+end)
