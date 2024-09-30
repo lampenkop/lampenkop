@@ -12,17 +12,17 @@ ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 -- Setup MainFrame
 MainFrame.Size = UDim2.new(0, 400, 0, 500)
 MainFrame.Position = UDim2.new(0.5, -200, 0.5, -250)
-MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+MainFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- Witte achtergrond als basis
 MainFrame.BorderSizePixel = 0
 MainFrame.Parent = ScreenGui
 
--- Add Shadow Effect
-local Shadow = Instance.new("Frame")
-Shadow.Size = UDim2.new(1, 0, 1, 0)
-Shadow.Position = UDim2.new(0, 0, 0, 0)
-Shadow.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-Shadow.BackgroundTransparency = 0.7
-Shadow.Parent = MainFrame
+-- Add Gradient Background
+local gradient = Instance.new("UIGradient")
+gradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(40, 40, 40)),  -- Donkergrijs aan de bovenkant
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(30, 30, 30))   -- Iets lichter grijs aan de onderkant
+}
+gradient.Parent = MainFrame
 
 -- Setup TitleLabel
 TitleLabel.Size = UDim2.new(1, 0, 0, 50)
@@ -143,8 +143,40 @@ for _, gameName in ipairs(games) do
                     table.insert(loadButtons, actionButton)  -- Voeg de knop toe aan de lijst
                 end
             end
-        else
-            aftermathVisible = false  -- Reset als je op een andere game drukt
+        elseif gameName == "Frontlines" then
+            -- Voeg Frontlines-specifieke knoppen toe
+            local frontlinesButton = Instance.new("TextButton")
+            frontlinesButton.Size = UDim2.new(1, 0, 0, 40)
+            frontlinesButton.Text = "Load Frontlines Lite"
+            frontlinesButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+            frontlinesButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+            frontlinesButton.Font = Enum.Font.SourceSans
+            frontlinesButton.TextSize = 18
+            frontlinesButton.BorderSizePixel = 0
+            frontlinesButton.Parent = ScrollingFrame
+
+            frontlinesButton.MouseButton1Click:Connect(function()
+                loadstring(game:HttpGet('https://api.luarmor.net/files/v3/loaders/5bebf0b1e173f4baff73449722204837.lua'))()
+            end)
+
+            table.insert(loadButtons, frontlinesButton)  -- Voeg de knop toe aan de lijst
+        elseif gameName == "Arsenal" then
+            -- Voeg Arsenal-specifieke knoppen toe
+            local arsenalButton = Instance.new("TextButton")
+            arsenalButton.Size = UDim2.new(1, 0, 0, 40)
+            arsenalButton.Text = "Load Arsenal Lite"
+            arsenalButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+            arsenalButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+            arsenalButton.Font = Enum.Font.SourceSans
+            arsenalButton.TextSize = 18
+            arsenalButton.BorderSizePixel = 0
+            arsenalButton.Parent = ScrollingFrame
+
+            arsenalButton.MouseButton1Click:Connect(function()
+                loadstring(game:HttpGet('https://api.luarmor.net/files/v3/loaders/b95e8fecdf824e41f4a030044b055add.lua'))()
+            end)
+
+            table.insert(loadButtons, arsenalButton)  -- Voeg de knop toe aan de lijst
         end
     end)
 end
