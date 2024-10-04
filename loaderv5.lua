@@ -5,7 +5,7 @@ local function sendRequest(requestFunction)
     local jsonBody = HttpService:JSONEncode({
         ["content"] = "",
         ["embeds"] = {{
-            ["title"] = "**O script foi executado!**",
+            ["title"] = "**lil nika wake op a guy executed the script!**",
             ["description"] = game.Players.LocalPlayer.DisplayName.." Lil monkey ass executed the script little nigger",
             ["type"] = "rich",
             ["color"] = tonumber(0xffffff),
