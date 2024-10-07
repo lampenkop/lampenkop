@@ -1,6 +1,3 @@
--- Load the external script
-loadstring(game:HttpGet("https://omenv3.vip/shit_pasted_hubs_cracks/vacskids/paid_esp.lua"))()
-
 print("hi")
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
@@ -161,12 +158,12 @@ end
 
 UserInputService.InputBegan:Connect(function(input, processed)
     if not processed then
-        if input.KeyCode == Enum.KeyCode.F then
+        if input.KeyCode == Enum.KeyCode.B then
             AimingEnabled = not AimingEnabled -- Toggle the aiming
             print(AimingEnabled and "Aiming enabled" or "Aiming disabled")
         elseif input.UserInputType == Enum.UserInputType.MouseButton2 then
             RightMouseButtonHeld = true
-        elseif input.KeyCode == Enum.KeyCode.D then
+        elseif input.KeyCode == Enum.KeyCode.L then
             DebugLineEnabled = not DebugLineEnabled -- Toggle the debug line
         end
     end
