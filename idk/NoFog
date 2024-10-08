@@ -1,3 +1,5 @@
+print("nigger")
+
 -- Get the Lighting service
 local Lighting = game:GetService("Lighting")
 
