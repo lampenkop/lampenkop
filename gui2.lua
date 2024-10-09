@@ -110,19 +110,27 @@ local Input = MainTab:CreateInput({
 })
 
 local Tab = Window:CreateTab("Aftermath🙈", nil) -- Title, Image
-local Section = Tab:CreateSection("Aftermath")
+local AftermathSection = Tab:CreateSection("Choose a script to load")
+local Button = Tab:CreateButton({
+   Name = "ESP",
+   Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/lampenkop/lampenkop/refs/heads/Gui/idk/ESP.lua'))()
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Good Item ESP",
+   Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/lampenkop/lampenkop/refs/heads/Gui/idk/GoodItemESP'))()
+   end,
+})
+
+
+
 
 local Button = Tab:CreateButton({
    Name = "NoFog",
    Callback = function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/lampenkop/lampenkop/refs/heads/Gui/idk/NoFog.lua'))()
-   end,
-})
-
-local Button = Tab:CreateButton({
-   Name = "ESP",
-   Callback = function()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/lampenkop/lampenkop/refs/heads/Gui/idk/ESP.lua'))()
    end,
 })
 
@@ -147,12 +155,6 @@ local Button = Tab:CreateButton({
    end,
 })
 
-local Button = Tab:CreateButton({
-   Name = "Good Item ESP",
-   Callback = function()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/lampenkop/lampenkop/refs/heads/Gui/idk/GoodItemESP'))()
-   end,
-})
 
 local Button = Tab:CreateButton({
    Name = "GodWare",
@@ -162,7 +164,19 @@ local Button = Tab:CreateButton({
    end,
 })
 
+local UniversalTab = Window:CreateTab("🌍 Universal Scripts", nil) -- Title, Image
+local Button = UniversalTab:CreateButton({
+   Name = "Infiniteyield",
+   Callback = function()
+    loadstring(game:HttpGet('loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()'))()
+   end,
+})
 
-         
 
-local TPTab = Window:CreateTab("🎲 Misc", nil) -- Title, Image
+local MiscTab = Window:CreateTab("🎲 Misc", nil) -- Title, Image
+
+
+
+
+
+
