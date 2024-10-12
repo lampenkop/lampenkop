@@ -148,8 +148,14 @@ local Dropdown = Tab:CreateDropdown({
    MultipleOptions = true,
    Flag = "CarFlyDropDown", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Option)
-		
-   end,
+		Dropdown:Set({"Slow Car Fly"}) -- The new list of options
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/lampenkop/lampenkop/refs/heads/Gui/idk/SlowCarFly.lua'))()
+		Dropdown:Set({"Best Car fly"}) -- The new list of options
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/lampenkop/lampenkop/refs/heads/Gui/idk/BestCarFly.lua'))()
+		Dropdown:Set({"Fast Car Fly"}) -- The new list of options
+		loadstring(game:HttpGet(https://raw.githubusercontent.com/lampenkop/lampenkop/refs/heads/Gui/idk/FastCarfly.lua''))()
+
+ end,
 })
 
 local Button = Tab:CreateButton({
