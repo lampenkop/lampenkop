@@ -141,10 +141,14 @@ local Button = Tab:CreateButton({
    end,
 })
 
-local Button = Tab:CreateButton({
-   Name = "🚗➡️🏢CarFly",
-   Callback = function()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/lampenkop/lampenkop/refs/heads/Gui/idk/carfly.lua'))()
+local Dropdown = Tab:CreateDropdown({
+   Name = "Car Fly",
+   Options = {"Slow Car Fly","Best Car fly","Fast Car Fly"},
+   CurrentOption = {"nill"},
+   MultipleOptions = true,
+   Flag = "CarFlyDropDown", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Option)
+		
    end,
 })
 
@@ -165,12 +169,6 @@ local Button = Tab:CreateButton({
 })
 
 local UniversalTab = Window:CreateTab("🌍 Universal Scripts", nil) -- Title, Image
-local Button = UniversalTab:CreateButton({
-   Name = "Infiniteyield",
-   Callback = function()
-    loadstring(game:HttpGet('loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()'))()
-   end,
-})
 
 
 local MiscTab = Window:CreateTab("🎲 Misc", nil) -- Title, Image
